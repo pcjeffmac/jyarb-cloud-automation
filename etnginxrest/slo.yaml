@@ -1,0 +1,78 @@
+spec_version: ""
+filter: {}
+comparison:
+    compare_with: single_result
+    include_result_with_score: pass
+    number_of_comparison_results: 1
+    aggregate_function: avg
+objectives:
+    - sli: response_time_p95
+      displayName: Response time (P95)
+      pass:
+        - criteria:
+            - <+50%
+            - <2.0
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: response_time_p90
+      displayName: Response time (P90)
+      pass:
+        - criteria:
+            - <+50%
+            - <3.0
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: response_time_p50
+      displayName: Response time (P50)
+      pass:
+        - criteria:
+            - <+50%
+            - <3.0
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: error_rate
+      displayName: Failure Rate (Avg)
+      pass:
+        - criteria:
+            - <=1
+      warning:
+        - criteria:
+            - <=2
+      weight: 2
+      key_sli: false
+    - sli: svc_tp_min
+      displayName: Throughput (per min)
+      pass:
+        - criteria:
+            - '>200'
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: svc2svc_calls
+      displayName: Calls to backend services (per min)
+      pass: []
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: process_cpu
+      displayName: Process CPU
+      pass:
+        - criteria:
+            - <20
+      warning:
+        - criteria:
+            - <50
+      weight: 1
+      key_sli: false
+    - sli: process_memory
+      displayName: Process Memory
+      pass: []
+      warning: []
+      weight: 1
+      key_sli: false
+total_score:
+    pass: 90%
+    warning: 70%
